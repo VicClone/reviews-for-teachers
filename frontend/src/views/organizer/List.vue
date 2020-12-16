@@ -282,7 +282,7 @@
 
     methods: {
       getTeachers() {
-        fetch(`http://localhost:8000/api/v1/teachers/?id=${this.$route.params.id}`)
+        fetch(`${this.$hostname}/api/v1/teachers/?id=${this.$route.params.id}`)
           .then((response) => {
             return response.json();
           })
@@ -293,7 +293,7 @@
       },
 
       getSubjects() {
-        fetch(`http://localhost:8000/api/v1/subjects/?organizer=${this.$route.params.id}`)
+        fetch(`${this.$hostname}/api/v1/subjects/?organizer=${this.$route.params.id}`)
           .then((response) => {
             return response.json();
           })
@@ -303,7 +303,7 @@
       },
 
       getGroups() {
-        fetch(`http://localhost:8000/api/v1/groups/?organizer=${this.$route.params.id}`)
+        fetch(`${this.$hostname}/api/v1/groups/?organizer=${this.$route.params.id}`)
           .then((response) => {
             return response.json();
           })
@@ -316,7 +316,7 @@
         if (this.formTeacher.name && this.formTeacher.email && this.formTeacher.password) {
           this.formTeacher.organizer = this.$route.params.id
 
-          fetch('http://localhost:8000/api/v1/teacher/', {
+          fetch(`${this.$hostname}/api/v1/teacher/`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json;charset=utf-8'
@@ -339,7 +339,7 @@
         if (this.formSubject.name && this.formSubject.teacher) {
           this.formSubject.organizer = this.$route.params.id
 
-          fetch('http://localhost:8000/api/v1/subject/', {
+          fetch(`${this.$hostname}/api/v1/subject/`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json;charset=utf-8'
@@ -362,7 +362,7 @@
         if (this.formGroup.name) {
           this.formGroup.organizer = this.$route.params.id
 
-          fetch('http://localhost:8000/api/v1/group/', {
+          fetch(`${this.$hostname}/api/v1/group/`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json;charset=utf-8'

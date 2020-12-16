@@ -141,7 +141,7 @@ export default {
 
       if (validForm) {
 
-        fetch('http://localhost:8000/api/v1/answer/', {
+        fetch(`${this.$hostname}/api/v1/answer/`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json;charset=utf-8'

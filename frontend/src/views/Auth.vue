@@ -86,10 +86,10 @@ export default {
       }
     },
 
-    // http://localhost:8000/api/v1/organizers/?login=test@ceramic3d.ru&password=1234566
+    // ${this.$hostname}/api/v1/organizers/?login=test@ceramic3d.ru&password=1234566
 
     authOrganizer() {
-      fetch(`http://localhost:8000/api/v1/organizers/?login=${this.formAuth.login}&password=${this.formAuth.password}`)
+      fetch(`${this.$hostname}/api/v1/organizers/?login=${this.formAuth.login}&password=${this.formAuth.password}`)
         .then((response) => {
           return response.json();
         })
@@ -101,7 +101,7 @@ export default {
     },
 
     authTeacher() {
-      fetch(`http://localhost:8000/api/v1/teachers/?login=${this.formAuth.login}&password=${this.formAuth.password}`)
+      fetch(`${this.$hostname}/api/v1/teachers/?login=${this.formAuth.login}&password=${this.formAuth.password}`)
         .then((response) => {
           return response.json();
         })
@@ -113,7 +113,7 @@ export default {
     },
 
     authStudent() {
-      fetch(`http://localhost:8000/api/v1/students/?login=${this.formAuth.login}&password=${this.formAuth.password}`)
+      fetch(`${this.$hostname}/api/v1/students/?login=${this.formAuth.login}&password=${this.formAuth.password}`)
         .then((response) => {
           return response.json();
         })

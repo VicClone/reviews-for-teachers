@@ -137,7 +137,7 @@ export default {
 
   methods: {
     getStudent() {
-      fetch(`http://localhost:8000/api/v1/students/${this.$route.params.id}`)
+      fetch(`${this.$hostname}/api/v1/students/${this.$route.params.id}`)
         .then((response) => {
           return response.json();
         })
@@ -148,7 +148,7 @@ export default {
     },
 
     getReviews(groupId) {
-      fetch(`http://localhost:8000/api/v1/reviews/?group=${groupId}`)
+      fetch(`${this.$hostname}/api/v1/reviews/?group=${groupId}`)
         .then((response) => {
           return response.json();
         })
@@ -161,7 +161,7 @@ export default {
 
     getAnswers(studentId) {
       console.log('asdfasdf')
-      fetch(`http://localhost:8000/api/v1/answers/?student=${studentId}`)
+      fetch(`${this.$hostname}/api/v1/answers/?student=${studentId}`)
         .then((response) => {
           return response.json();
         })

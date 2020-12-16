@@ -64,7 +64,7 @@ export default {
     sendForm() {
       if (this.form.name && this.form.email && this.form.password) {
         console.log(this.form);
-        fetch('http://localhost:8000/api/v1/organizer/', {
+        fetch(`${this.$hostname}/api/v1/organizer/`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json;charset=utf-8'

@@ -104,7 +104,7 @@ export default {
   },
   methods: {
     getStudent() {
-      fetch(`http://localhost:8000/api/v1/student/?id=${this.$route.params.id}`)
+      fetch(`${this.$hostname}/api/v1/student/?id=${this.$route.params.id}`)
         .then((response) => {
           return response.json();
         })
@@ -116,7 +116,7 @@ export default {
     sendForm() {
       if (this.form.name && this.form.email && this.form.password) {
         console.log(this.form);
-        fetch('http://localhost:8000/api/v1/organizer/', {
+        fetch(`${this.$hostname}/api/v1/organizer/`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json;charset=utf-8'

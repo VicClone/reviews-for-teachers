@@ -236,7 +236,7 @@ export default {
 
   methods: {
     getTeacher() {
-      fetch(`http://localhost:8000/api/v1/teachers/${this.$route.params.id}`)
+      fetch(`${this.$hostname}/api/v1/teachers/${this.$route.params.id}`)
         .then((response) => {
           return response.json();
         })
@@ -253,7 +253,7 @@ export default {
         && this.formReview.dateEnd
         && this.formReview.group
         && this.formReview.teacher) {
-        fetch(`http://localhost:8000/api/v1/review/`, {
+        fetch(`${this.$hostname}/api/v1/review/`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json;charset=utf-8'

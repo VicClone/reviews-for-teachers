@@ -85,7 +85,7 @@ export default {
   },
   methods: {
     getGroups() {
-      fetch(`http://localhost:8000/api/v1/groups/`)
+      fetch(`${this.$hostname}/api/v1/groups/`)
         .then((response) => {
           return response.json();
         })
@@ -96,7 +96,7 @@ export default {
     sendForm() {
       if (this.form.name && this.form.email && this.form.password && this.form.group) {
         console.log(this.form);
-        fetch('http://localhost:8000/api/v1/student/', {
+        fetch(`${this.$hostname}/api/v1/student/`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json;charset=utf-8'
