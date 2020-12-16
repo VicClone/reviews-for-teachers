@@ -10,5 +10,9 @@ admin.site.register(Students)
 admin.site.register(Subjects)
 admin.site.register(Lessons)
 admin.site.register(Reviews)
+admin.site.register(Answers)
+admin.site.register(Сriterions)
+admin.site.register(СriterionAnswers)
+
 # admin.site.register(userProfile)
 
