@@ -6,7 +6,6 @@ set -e
 export PGUSER="$POSTGRES_USER"
 
 POSTGIS_VERSION="${POSTGIS_VERSION%%+*}"
-echo "Updating PostGIS extensions '$DB' to $POSTGIS_VERSION"
 
 # Load PostGIS into both template_database and $POSTGRES_DB
 for DB in template_postgis "$POSTGRES_DB" "${@}"; do
