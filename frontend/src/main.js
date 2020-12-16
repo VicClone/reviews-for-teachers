@@ -5,8 +5,13 @@ import router from './router'
 import store from './store'
 import './plugins/base'
 import vuetify from './plugins/vuetify'
+import {isProduction} from './env.js'
 
-Vue.config.productionTip = false
+Vue.config.productionTip = isProduction
+
+Vue.prototype.$hostname = (Vue.config.productionTip) ? 'http://91.201.53.186:3500' : 'http://localhost:3500'
+
+console.log(isProduction);
 
 new Vue({
   router,

@@ -62,6 +62,10 @@ export default {
     CoreFooter: () => import('@/components/core/Footer'),
   },
 
+  beforeCreate: function() {
+    console.log(this.$hostname)
+  },
+
   data: () => ({
     //
   })
