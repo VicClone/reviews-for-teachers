@@ -120,6 +120,10 @@ def makemigrations(app=''):
 def runserver():
     local('docker-compose exec backend python manage.py runserver 0.0.0.0:8000')
 
+@task
+def runserver_d():
+    local('docker-compose exec -d backend python manage.py runserver 0.0.0.0:8000')
+
 
 @task
 def createsuperuser():
@@ -173,3 +177,7 @@ def run_watch(args=''):
 @task
 def run_serve(args=''):
     local('docker-compose exec nodejs14 npm run serve')
+
+@task
+def run_serve_d(args=''):
+    local('docker-compose exec -d nodejs14 npm run serve')
