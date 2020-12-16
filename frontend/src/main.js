@@ -9,7 +9,7 @@ import {isProduction} from './env.js'
 
 Vue.config.productionTip = isProduction
 
-Vue.prototype.$hostname = (Vue.config.productionTip) ? 'http://91.201.53.186:3500' : 'http://localhost:3500'
+Vue.prototype.$hostname = (Vue.config.productionTip) ? 'http://91.201.53.186:8000' : 'http://localhost:3500'
 
 console.log(isProduction);
 
