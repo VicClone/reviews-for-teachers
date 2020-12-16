@@ -3,7 +3,7 @@ FROM postgres:11
 LABEL maintainer="PostGIS Project - https://postgis.net"
 
 ENV POSTGIS_MAJOR 3
-ENV POSTGIS_VERSION 3.0.2+dfsg-4.pgdg90+1
+ENV POSTGIS_VERSION 3.0.3+dfsg-2.pgdg90+1
 
 RUN apt-get update \
       && apt-cache showpkg postgresql-$PG_MAJOR-postgis-$POSTGIS_MAJOR \
@@ -13,5 +13,5 @@ RUN apt-get update \
       && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /docker-entrypoint-initdb.d
-COPY ./initdb-postgis.sh /docker-entrypoint-initdb.d/postgis.sh
-RUN cp /usr/lib/postgresql/11/lib/postgis-3.so /usr/lib/postgresql/11/lib/postgis-2.5
+COPY ./initdb-postgis.sh /docker-entrypoint-initdb.d/10_postgis.sh
+COPY ./update-postgis.sh /usr/local/bin
