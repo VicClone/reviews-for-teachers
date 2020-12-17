@@ -93,6 +93,7 @@ class UpdateGroupTeacherSerializer(serializers.ModelSerializer):
 class ReviewsListSerializer(serializers.ModelSerializer):
     teacher = TeachersListSerializer()
     subject = SubjectsListSerializer()
+    group = GroupListSerializer()
 
     class Meta:
         model = Reviews
@@ -103,6 +104,11 @@ class AnswersListSerializer(serializers.ModelSerializer):
     review = ReviewsListSerializer()
     student = StudentListSerializer()
 
+    class Meta:
+        model = Answers
+        fields = "__all__"
+
+class AnswerCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Answers
         fields = "__all__"

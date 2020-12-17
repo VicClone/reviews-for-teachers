@@ -160,22 +160,20 @@ export default {
     },
 
     getAnswers(studentId) {
-      console.log('asdfasdf')
       fetch(`${this.$hostname}/api/v1/answers/?student=${studentId}`)
         .then((response) => {
           return response.json();
         })
         .then((data) => {
-          console.log(data)
+          console.log(data, 'answers')
           this.answers = data;
         });
     },
 
     checkAnswers(review, answers) {
       for (const answer of answers) {
-        console.log(answer.review, review.id)
 
-        if (answer.review === review.id) {
+        if (answer.review.id === review.id) {
           return false
         }
       }

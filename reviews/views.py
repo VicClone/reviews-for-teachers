@@ -142,8 +142,14 @@ class ReviewsListView(APIView):
   def get(self, request):
     reviews = Reviews.objects
 
+    if request.GET.get('id'):
+      reviews = Reviews.objects.filter(id=request.GET.get('id'))
+
     if request.GET.get('group'):
       reviews = Reviews.objects.filter(group=request.GET.get('group'))
+
+    if request.GET.get('teacher'):
+      reviews = Reviews.objects.filter(teacher=request.GET.get('teacher'))
 
     serializer = ReviewsListSerializer(reviews, many=True)
 
@@ -164,8 +170,11 @@ class AnswersListView(APIView):
   def get(self, request):
     answers = Answers.objects
 
-    # if request.GET.get('student'):
-    #   student = Answers.objects.filter(student=request.GET.get('student'))
+    if request.GET.get('review'):
+      answers = Answers.objects.filter(review=request.GET.get('review'))
+
+    if request.GET.get('student'):
+      answers = Answers.objects.filter(student=request.GET.get('student'))
 
     serializer = AnswersListSerializer(answers, many=True)
 
@@ -173,9 +182,11 @@ class AnswersListView(APIView):
 
 class AnswerCreateView(APIView):
   def post(self, request):
-    answer = AnswersListSerializer(data=request.data)
+    answer = AnswerCreateSerializer(data=request.data)
 
     if answer.is_valid():
       answer.save()
 
-    return Response(status=201)
+      return Response(status=201)
+    else: 
+      return Response(status=401)

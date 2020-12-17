@@ -16,9 +16,9 @@
               ></v-text-field>
             </v-card-title>
             <v-data-table
-              v-if="reviews.length || reviewsFetch"
+              v-if="answers.length || answersFetch"
               :headers="headers"
-              :items="reviews"
+              :items="answers"
               :search="search"
             >
               <template v-slot:item.actions="{ item }">
@@ -26,10 +26,7 @@
                   depressed
                   small
                   :to="{
-                    name: 'ReviewDetail',
-                    params: {
-                      id: item.id
-                    }
+                    name: 'ReviewTeacher'
                   }"
                 >
                   Открыть
@@ -50,19 +47,19 @@
         search: '',
         headers: [
           {
-            text: 'Дата начала',
+            text: 'Дата',
             align: 'start',
             sortable: false,
-            value: 'dateStart',
+            value: 'date',
           },
-          { text: 'Дата окончания', value: 'dateEnd' },
-          { text: 'Название', value: 'name' },
+          { text: 'Имя', value: 'name' },
+          { text: 'Оценка', value: 'rating' },
           { text: 'Предмет', value: 'subject' },
           { text: 'Преподаватель', value: 'teacher' },
           { text: 'Открыть', value: 'actions', sortable: false },
         ],
 
-        reviews: [],
+        answers: [],
       }
     },
 
@@ -78,26 +75,39 @@
 
     methods: {
       getReviews() {
-        console.log(this.$route.params.id);
-
-        fetch(`${this.$hostname}/api/v1/reviews/?teacher=${this.$route.params.id}`)
+        fetch(`${this.$hostname}/api/v1/reviews/?teacher=${this.$route}`)
           .then((response) => {
             return response.json();
           })
           .then((data) => {
             console.log(data)
-            for (const review of data) {
-              this.reviews.push({
-                id: review.id,
-                dateStart: review.dateStart,
-                dateEnd: review.dateEnd,
-                name: review.name,
-                subject: review.subject.name,
-                teacher: review.teacher.name,
-              })
-            }
+            this.teacher = data;
           });
       },
+
+      getAnswers() {
+        fetch(`${this.$hostname}/api/v1/answers/`)
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            const allAnswers = data;
+            const answerForTeacher = data.filter(item => item.review.teacher.id == this.$route.params.id)
+            console.log(answerForTeacher);
+
+            for (const answer of answerForTeacher) {
+              this.answers.push(
+                {
+                  date: answer.date,
+                  name: answer.student.name,
+                  rating: answer.rating,
+                  subject: answer.review.subject.name,
+                  teacher: answer.review.teacher.name,
+                }
+              )
+            }
+          });
+      }
     }
 
   }

@@ -59,9 +59,9 @@ const routes = [
     component: () => import('../views/teacher/Reviews.vue')
   },
   {
-    path: '/teacher/review',
-    name: 'ReviewTeacher',
-    component: () => import('../views/teacher/Review.vue')
+    path: '/review/:id',
+    name: 'ReviewDetail',
+    component: () => import('../views/ReviewDetail.vue')
   },
   {
     path: '/teacher/rating',
