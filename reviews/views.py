@@ -170,6 +170,9 @@ class AnswersListView(APIView):
   def get(self, request):
     answers = Answers.objects
 
+    if request.GET.get('id'):
+      answers = Answers.objects.filter(id=request.GET.get('id'))
+
     if request.GET.get('review'):
       answers = Answers.objects.filter(review=request.GET.get('review'))
 

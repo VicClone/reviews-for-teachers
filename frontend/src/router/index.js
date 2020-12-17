@@ -64,6 +64,16 @@ const routes = [
     component: () => import('../views/ReviewDetail.vue')
   },
   {
+    path: '/review/:id/answers',
+    name: 'ReviewAnswers',
+    component: () => import('../views/Answers.vue')
+  },
+  {
+    path: '/answer/:id',
+    name: 'AnswerDetail',
+    component: () => import('../views/AnswerDetail.vue')
+  },
+  {
     path: '/teacher/rating',
     name: 'RatingTeacher',
     component: () => import('../views/teacher/Rating.vue')

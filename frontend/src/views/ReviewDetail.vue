@@ -120,7 +120,16 @@
             </v-card-actions> -->
 
             <v-card-actions class="pb-5">
-              <v-btn color="primary" class="ma-auto">
+              <v-btn
+                color="primary"
+                class="ma-auto"
+                :to="{
+                  name: 'ReviewAnswers',
+                  params: {
+                    id: $route.params.id
+                  }
+                }"
+              >
                 Посмотреть ответы
               </v-btn>
             </v-card-actions>
