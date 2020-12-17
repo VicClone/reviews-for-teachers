@@ -130,6 +130,7 @@
                 Посмотреть отзывы
               </v-btn>
               <v-btn
+                v-if="false"
                 class="btns__btn"
                 :to="{
                   name: 'RatingTeacher',
