@@ -1,9 +1,8 @@
 <template>
   <v-container class="container-flex">
-    <section>
+    <section v-if="organizer || organizerFetch">
       <v-row justify="center">
         <v-col md="6">
-          {{ studentFetch }}
           <v-card
             class="mx-auto"
             max-width="600"
@@ -37,13 +36,10 @@
                   >
                     <v-list-item-content>
                       <v-list-item-title class="title">
-                        Иван Иванов
+                        {{ organizer.name }}
                       </v-list-item-title>
                       <v-list-item-subtitle>
-                        Курсы по маркетингу
-                      </v-list-item-subtitle>
-                      <v-list-item-subtitle>
-                        ivan@mail.com
+                        {{ organizer.email }}
                       </v-list-item-subtitle>
                     </v-list-item-content>
                   </v-list-item>
@@ -58,7 +54,10 @@
           <v-btn
             class="btns__btn"
             :to="{
-              name: 'ReviewsTeacher'
+              name: 'ReviewsOrganizer',
+              params: {
+                id: organizer.id
+              }
             }"
           >
             Посмотреть отзывы
@@ -95,24 +94,25 @@
 <script>
 export default {
   data: () => ({
-    student: null,
+    organizer: null,
   }),
   computed: {
-    studentFetch() {
-      this.getStudent()
-    },
+    organizerFetch() {
+      this.getOrganizer()
+    }
   },
   methods: {
-    getStudent() {
-      fetch(`${this.$hostname}/api/v1/student/?id=${this.$route.params.id}`)
+    getOrganizer() {
+      fetch(`${this.$hostname}/api/v1/organizers/?id=${this.$route.params.id}`)
         .then((response) => {
           return response.json();
         })
         .then((data) => {
           console.log(data)
-          this.teachers = data;
+          this.organizer = data[0]
         });
     },
+
     sendForm() {
       if (this.form.name && this.form.email && this.form.password) {
         console.log(this.form);

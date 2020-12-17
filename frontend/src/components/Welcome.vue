@@ -43,10 +43,19 @@
               color="primary"
               class="mt-4"
               :to="{
+                name: 'Auth'
+              }"
+            >
+              Авторизация
+            </v-btn>
+            <v-btn
+              color="primary"
+              class="mt-4 ml-4"
+              :to="{
                 name: 'About'
               }"
             >
-              Начать
+              Регистрация
             </v-btn>
           </v-col>
         </v-row>
