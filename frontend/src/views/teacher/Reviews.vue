@@ -16,8 +16,9 @@
               ></v-text-field>
             </v-card-title>
             <v-data-table
+              v-if="answers.length || answersFetch"
               :headers="headers"
-              :items="desserts"
+              :items="answers"
               :search="search"
             >
               <template v-slot:item.actions="{ item }">
@@ -57,51 +58,57 @@
           { text: 'Преподаватель', value: 'teacher' },
           { text: 'Открыть', value: 'actions', sortable: false },
         ],
-        desserts: [
-          {
-            date: '20.11.2020',
-            name: 'Вася Пупкин',
-            rating: 5,
-            subject: 'Маркетинг',
-            teacher: 'Петр Сергеич',
-          },
-          {
-            date: '20.11.2020',
-            name: 'Вася Пупкин',
-            rating: 5,
-            subject: 'Маркетинг',
-            teacher: 'Петр Сергеич',
-          },
-          {
-            date: '20.11.2020',
-            name: 'Вася Пупкин',
-            rating: 5,
-            subject: 'Маркетинг',
-            teacher: 'Петр Сергеич',
-          },
-          {
-            date: '20.11.2020',
-            name: 'Вася Пупкин',
-            rating: 4,
-            subject: 'Маркетинг',
-            teacher: 'Петр Сергеич',
-          },
-          {
-            date: '20.11.2020',
-            name: 'Вася Пупкин',
-            rating: 5,
-            subject: 'Маркетинг',
-            teacher: 'Петр Сергеич',
-          },
-          {
-            date: '20.11.2020',
-            name: 'Вася Пупкин',
-            rating: 5,
-            subject: 'Маркетинг',
-            teacher: 'Петр Сергеич',
-          },
-        ],
+
+        answers: [],
       }
     },
+
+    computed: {
+      answersFetch() {
+        this.getAnswers()
+      },
+
+      reviewsFetch() {
+        this.getReviews()
+      },
+    },
+
+    methods: {
+      getReviews() {
+        fetch(`${this.$hostname}/api/v1/reviews/?teacher=${this.$route}`)
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            console.log(data)
+            this.teacher = data;
+          });
+      },
+
+      getAnswers() {
+        fetch(`${this.$hostname}/api/v1/answers/`)
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            const allAnswers = data;
+            const answerForTeacher = data.filter(item => item.review.teacher.id == this.$route.params.id)
+            console.log(answerForTeacher);
+
+            for (const answer of answerForTeacher) {
+              this.answers.push(
+                {
+                  date: answer.date,
+                  name: answer.student.name,
+                  rating: answer.rating,
+                  subject: answer.review.subject.name,
+                  teacher: answer.review.teacher.name,
+                }
+              )
+            }
+          });
+      }
+    }
+
   }
 </script>

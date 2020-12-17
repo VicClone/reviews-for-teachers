@@ -164,8 +164,8 @@ class AnswersListView(APIView):
   def get(self, request):
     answers = Answers.objects
 
-    if request.GET.get('student'):
-      student = Answers.objects.filter(student=request.GET.get('student'))
+    # if request.GET.get('student'):
+    #   student = Answers.objects.filter(student=request.GET.get('student'))
 
     serializer = AnswersListSerializer(answers, many=True)
 

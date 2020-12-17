@@ -132,7 +132,10 @@
               <v-btn
                 class="btns__btn"
                 :to="{
-                  name: 'RatingTeacher'
+                  name: 'RatingTeacher',
+                  params: {
+                    id: teacher.id
+                  }
                 }"
               >
                 Рейтинг предметов

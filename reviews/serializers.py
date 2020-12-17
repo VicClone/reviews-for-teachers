@@ -100,6 +100,8 @@ class ReviewsListSerializer(serializers.ModelSerializer):
 
 
 class AnswersListSerializer(serializers.ModelSerializer):
+    review = ReviewsListSerializer()
+    student = StudentListSerializer()
 
     class Meta:
         model = Answers
