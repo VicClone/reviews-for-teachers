@@ -11,6 +11,9 @@ class OrganizersListView(APIView):
     if request.GET.get('login') and request.GET.get('password'):
       organizer = Organizer.objects.filter(email=request.GET.get('login'), password=request.GET.get('password'))
 
+    if request.GET.get('id'):
+      organizer = Organizer.objects.filter(id=request.GET.get('id'))
+
     serializer = OrganizerDetailSerializer(organizer, many=True)
 
     return Response(serializer.data)
@@ -22,7 +25,7 @@ class OrganizerCreateView(APIView):
     if organizer.is_valid():
       organizer.save()
 
-    return Response(status=201)
+    return Response(organizer.data, status=201)
 
 class TeachersListView(APIView):
   def get(self, request):
@@ -51,7 +54,18 @@ class TeacherCreateView(APIView):
     if teacher.is_valid():
       teacher.save()
 
-    return Response(status=201)
+    return Response(teacher.data, status=201)
+
+
+class UpdateGroupsTeacherViews(APIView):
+  def post(self, request):
+    serializer = UpdateGroupTeacherSerializer(data=request.data)
+    if serializer.is_valid():
+      serializer.save()
+      return Response(status=201)
+
+    else: 
+      return Response(status=400)
 
 
 class GroupListView(APIView):

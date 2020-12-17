@@ -7,6 +7,7 @@ urlpatterns = [
     path("teachers/", views.TeachersListView.as_view()),
     path("teachers/<int:pk>/", views.TeacherDetailView.as_view()),
     path("teacher/", views.TeacherCreateView.as_view()),
+    path("teacher-update-groups/", views.UpdateGroupsTeacherViews.as_view()),
 
     path("organizer/", views.OrganizerCreateView.as_view()),
     path("organizers/", views.OrganizersListView.as_view()),

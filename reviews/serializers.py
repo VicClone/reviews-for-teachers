@@ -76,6 +76,20 @@ class TeacherDetailSerializer(serializers.ModelSerializer):
         exclude = ("password",)
 
 
+class UpdateGroupTeacherSerializer(serializers.ModelSerializer):
+    class Meta: 
+        model = Teachers
+        fields = ("id", "groups")
+
+    def create(self, validated_data):
+        teacher = Teachers.objects.update_or_create(
+            id=validated_data.get('id', None),
+            defaults={'groups': validated_data.get("groups")}
+        )
+
+        return teacher
+
+
 class ReviewsListSerializer(serializers.ModelSerializer):
     teacher = TeachersListSerializer()
     subject = SubjectsListSerializer()

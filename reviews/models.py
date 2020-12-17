@@ -49,8 +49,8 @@ class Teachers(models.Model):
   email = models.CharField("E-mail", max_length=60)
   password = models.CharField("Пароль", max_length=60)
   organizer = models.ForeignKey(Organizer, verbose_name="Организатор", on_delete=models.SET_NULL, null=True)
-  groups = models.ManyToManyField(Groups, verbose_name="Группы", related_name="teacher_groups")
-  subjects = models.ManyToManyField(Subjects, verbose_name="Предметы", related_name="teacher_subjects")
+  groups = models.ManyToManyField(Groups, verbose_name="Группы", related_name="teacher_groups", null=True)
+  subjects = models.ManyToManyField(Subjects, verbose_name="Предметы", related_name="teacher_subjects", null=True)
 
   def __str__(self):
     return self.name

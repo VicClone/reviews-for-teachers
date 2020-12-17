@@ -33,6 +33,7 @@
                   <v-list-item
                     color="rgba(0, 0, 0, .4)"
                     dark
+                    v-if="teacher || teacherFetch"
                   >
                     <v-list-item-content>
                       <v-list-item-title class="title">
@@ -225,18 +226,33 @@ export default {
       group: 0,
       teacher: 0,
     },
-    dialogReview: false
+    dialogReview: false,
+    organizer: null,
   }),
 
   computed: {
     teacherFetch() {
       this.getTeacher()
     },
+
+    organizerFetch() {
+      this.getOrganizer()
+    },
   },
 
   methods: {
     getTeacher() {
       fetch(`${this.$hostname}/api/v1/teachers/${this.$route.params.id}`)
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          console.log(data)
+          this.teacher = data;
+        });
+    },
+    getOrganizer() {
+      fetch(`${this.$hostname}/api/v1/organizers/?id=${this.teacher.organizer}`)
         .then((response) => {
           return response.json();
         })

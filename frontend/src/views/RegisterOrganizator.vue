@@ -63,7 +63,6 @@ export default {
   methods: {
     sendForm() {
       if (this.form.name && this.form.email && this.form.password) {
-        console.log(this.form);
         fetch(`${this.$hostname}/api/v1/organizer/`, {
           method: 'POST',
           headers: {
@@ -71,8 +70,13 @@ export default {
           },
           body: JSON.stringify(this.form)
         })
-        .then(resolve => {
+        .then(response => {
+
           console.log('form send');
+          return response.json();
+        })
+        .then(data => {
+          this.$router.push({ name: 'ProfileOrganizer', params: { id: data.id }})
         })
         .catch(error => {
           console.error(error)
