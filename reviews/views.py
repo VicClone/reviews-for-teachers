@@ -158,12 +158,13 @@ class ReviewsListView(APIView):
 
 class ReviewСreateView(APIView):
   def post(self, request):
-    review = ReviewsListSerializer(data=request.data)
+    review = ReviewCreateSerializer(data=request.data)
 
     if review.is_valid():
       review.save()
 
     return Response(status=201)
+
 
 
 class AnswersListView(APIView):

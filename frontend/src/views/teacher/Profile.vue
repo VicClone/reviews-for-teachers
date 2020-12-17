@@ -165,6 +165,15 @@
           >
           </v-text-field>
           <v-select
+            :items="teacher.subjects"
+            item-value="id"
+            item-text="name"
+            label="Предмет"
+            outlined
+            required
+            v-model="formReview.subject"
+          ></v-select>
+          <v-select
             :items="teacher.groups"
             item-value="id"
             item-text="name"
@@ -227,6 +236,7 @@ export default {
       name: '',
       dateStart: 0,
       dateEnd: 0,
+      subject: 0,
       group: 0,
       teacher: 0,
     },
@@ -272,6 +282,7 @@ export default {
         && this.formReview.dateStart
         && this.formReview.dateEnd
         && this.formReview.group
+        && this.formReview.subject
         && this.formReview.teacher) {
         fetch(`${this.$hostname}/api/v1/review/`, {
           method: 'POST',

@@ -90,6 +90,12 @@ class UpdateGroupTeacherSerializer(serializers.ModelSerializer):
         return teacher
 
 
+class ReviewCreateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Reviews
+        fields = "__all__"
+
 class ReviewsListSerializer(serializers.ModelSerializer):
     teacher = TeachersListSerializer()
     subject = SubjectsListSerializer()
