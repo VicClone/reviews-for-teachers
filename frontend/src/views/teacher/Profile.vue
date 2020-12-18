@@ -53,7 +53,7 @@
           </v-card>
         </v-col>
       </v-row>
-      <v-row justify="center">
+      <v-row justify="center" v-if="organizer || organizerFetch">
         <v-col md="6">
           <v-row justify="center">
             <v-col md="4">
@@ -61,13 +61,13 @@
                 class="mx-auto"
                 tile
               >
-                <v-list>
+                <v-list v-if="subjects.length || subjectsFetch">
                   <v-subheader>Список предметов</v-subheader>
                   <v-list-item-group
                     color="primary"
                   >
                     <v-list-item
-                      v-for="subject in teacher.subjects"
+                      v-for="subject in subjects"
                       :key="subject.id"
                       @click="subjectId = subject.id"
                     >
@@ -89,13 +89,13 @@
                 class="mx-auto"
                 tile
               >
-                <v-list>
+                <v-list v-if="groups.length || groupsFetch">
                   <v-subheader>Список групп</v-subheader>
                   <v-list-item-group
                     color="primary"
                   >
                     <v-list-item
-                      v-for="group in teacher.groups"
+                      v-for="group in groups"
                       :key="group.id"
                       @click="groupId = group.id"
                     >
@@ -165,7 +165,7 @@
           >
           </v-text-field>
           <v-select
-            :items="teacher.subjects"
+            :items="subjects"
             item-value="id"
             item-text="name"
             label="Предмет"
@@ -174,7 +174,7 @@
             v-model="formReview.subject"
           ></v-select>
           <v-select
-            :items="teacher.groups"
+            :items="groups"
             item-value="id"
             item-text="name"
             label="Группа"
@@ -242,6 +242,8 @@ export default {
     },
     dialogReview: false,
     organizer: null,
+    groups: [],
+    subjects: [],
   }),
 
   computed: {
@@ -251,6 +253,14 @@ export default {
 
     organizerFetch() {
       this.getOrganizer()
+    },
+
+    groupsFetch() {
+      this.getGroups()
+    },
+
+    subjectsFetch() {
+      this.getSubjects()
     },
   },
 
@@ -266,15 +276,37 @@ export default {
         });
     },
     getOrganizer() {
-      fetch(`${this.$hostname}/api/v1/organizers/?id=${this.teacher.organizer}`)
+      fetch(`${this.$hostname}/api/v1/organizers/?id=${this.teacher.organizer.id}`)
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          this.organizer = data;
+        });
+    },
+
+    getGroups() {
+      fetch(`${this.$hostname}/api/v1/groups/?organizer=${this.teacher.organizer.id}`)
         .then((response) => {
           return response.json();
         })
         .then((data) => {
           console.log(data)
-          this.teacher = data;
+          this.groups = data;
         });
     },
+
+    getSubjects() {
+      fetch(`${this.$hostname}/api/v1/subjects/?organizer=${this.teacher. organizer.id}`)
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          console.log(data)
+          this.subjects = data;
+        });
+    },
+
     createReview() {
       this.formReview.teacher = this.teacher.id
 
