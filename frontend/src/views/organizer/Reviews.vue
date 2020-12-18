@@ -80,7 +80,7 @@
       getReviews() {
         console.log(this.$route.params.id);
 
-        fetch(`${this.$hostname}/api/v1/reviews/`)
+        fetch(`${this.$hostname}/api/v1/reviews/?organizer=${this.$route.params.id}`)
           .then((response) => {
             return response.json();
           })

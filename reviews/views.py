@@ -151,6 +151,9 @@ class ReviewsListView(APIView):
     if request.GET.get('teacher'):
       reviews = Reviews.objects.filter(teacher=request.GET.get('teacher'))
 
+    if request.GET.get('organizer'):
+      reviews = Reviews.objects.filter(teacher=request.GET.get('organizer'))
+
     serializer = ReviewsListSerializer(reviews, many=True)
 
     return Response(serializer.data)
