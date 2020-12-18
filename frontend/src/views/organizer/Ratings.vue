@@ -34,9 +34,10 @@
                   depressed
                   small
                   :to="{
-                    name: 'ReviewDetail',
+                    name: 'TeacherRating',
                     params: {
-                      id: item.id
+                      id: $route.params.id,
+                      teacher: item.id
                     }
                   }"
                 >

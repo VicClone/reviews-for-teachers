@@ -207,7 +207,7 @@
         }
 
         for (const critery of this.criteries) {
-          this.averageRating[critery] /= 3;
+          this.averageRating[critery] /= answers.length;
           this.averageRating[critery] = Math.round(this.averageRating[critery])
         }
 
