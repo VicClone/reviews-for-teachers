@@ -7,6 +7,7 @@
       class="ma-2"
       color="info"
       :small="!large"
+      :href="item.link"
     >
       <v-icon
         dark
@@ -28,24 +29,14 @@
     data: () => ({
       items: [
         {
-          name: 'Twitter',
-          icon: 'mdi-twitter',
-        },
-        {
           name: 'Instagram',
           icon: 'mdi-instagram',
-        },
-        {
-          name: 'Facebook',
-          icon: 'mdi-facebook',
+          link: 'https://www.instagram.com/viktor_ea/',
         },
         {
           name: 'Email',
           icon: 'mdi-email',
-        },
-        {
-          name: 'Phone',
-          icon: 'mdi-phone',
+          link: 'mailto:evdokimovvik@gmail.com'
         },
       ],
     }),
