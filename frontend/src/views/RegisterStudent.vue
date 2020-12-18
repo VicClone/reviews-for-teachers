@@ -101,7 +101,8 @@ export default {
           return response.json()
         })
         .then(data => {
-          this.$router.push({ name: 'ProfileStudent', params: { id: data.id }})
+          // this.$router.push({ name: 'ProfileStudent', params: { id: data.id }})
+          this.$router.push({ name: 'Auth'})
         })
         .catch(error => {
           console.error(error)
