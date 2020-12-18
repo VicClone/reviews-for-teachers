@@ -27,6 +27,9 @@
         $route.name != 'RegisterTeacher'
       "
       color="primary"
+      :to="{
+        name: 'Home'
+      }"
     >
       Выход
     </v-btn>

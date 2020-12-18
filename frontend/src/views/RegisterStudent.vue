@@ -42,13 +42,6 @@
               v-model="form.password"
             >
             </v-text-field>
-            <v-text-field
-              label="Повторите пароль"
-              outlined
-              required
-              type="password"
-            >
-            </v-text-field>
             <v-card-actions>
               <v-btn
                 class="ma-auto"
