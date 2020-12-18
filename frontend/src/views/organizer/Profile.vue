@@ -62,7 +62,15 @@
           >
             Посмотреть отзывы
           </v-btn>
-          <v-btn class="btns__btn">
+          <v-btn
+            class="btns__btn"
+            :to="{
+              name: 'RatingsOrganizer',
+              params: {
+                id: organizer.id
+              }
+            }"
+          >
             Рейтинг преподавателей
           </v-btn>
           <v-btn
