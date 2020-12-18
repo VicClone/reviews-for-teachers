@@ -13,7 +13,7 @@
               <p>
                 {{ teacher.name }}
               </p>
-              <p>
+              <!-- <p>
                 Группы:
                 <span v-for="group in teacher.groups" :key="group.id">
                   {{ group.name }},
@@ -24,7 +24,7 @@
                 <span v-for="subject in teacher.subjects" :key="subject.id">
                   {{ subject.name }},
                 </span>
-              </p>
+              </p> -->
               <p>
                 Всего отзывов: {{reviewsAnswers.length}}
               </p>

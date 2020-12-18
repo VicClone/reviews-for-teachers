@@ -17,6 +17,19 @@
 
     <v-spacer />
 
+    <v-btn
+      v-if="
+        $route.name != 'Home' &&
+        $route.name != 'Auth' &&
+        $route.name != 'About' &&
+        $route.name != 'RegisterStudent' &&
+        $route.name != 'RegisterOrganizator' &&
+        $route.name != 'RegisterTeacher'
+      "
+      color="primary"
+    >
+      Выход
+    </v-btn>
     <social-media />
   </v-app-bar>
 </template>

@@ -77,6 +77,11 @@ export default {
     min-height: 90vh;
   }
 
+  .v-main__wrap {
+    background-image: url('assets/bg.jpg');
+    background-size: cover;
+  }
+
   .container-flex {
     display: flex;
     flex-direction: column;
