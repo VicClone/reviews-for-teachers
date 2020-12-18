@@ -2,13 +2,13 @@
   <div>
     <welcome />
 
-    <recent-projects />
+    <recent-projects v-if="false" />
 
-    <services />
+    <services v-if="false" />
 
-    <about-me />
+    <about-me v-if="false" />
 
-    <get-in-touch />
+    <get-in-touch v-if="false" />
   </div>
 </template>
 
