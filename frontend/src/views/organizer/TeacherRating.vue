@@ -51,8 +51,7 @@
                       color="#5b5c79"
                       height="100"
                       padding="24"
-                      stroke-linecap="round"
-                      smooth
+                      line-width="2"
                     >
                     </v-sparkline>
                   </v-sheet>
@@ -187,7 +186,13 @@ export default {
           return response.json();
         })
         .then(data => {
-          this.filterAnsersForReviews(data, this.teacherAnswers)
+          const sortReviews = data.sort(function (a, b) {
+            const dateA = new Date(a.dateStart);
+            const dateB = new Date(b.dateStart);
+
+            return dateA - dateB;
+          })
+          this.filterAnsersForReviews(sortReviews, this.teacherAnswers)
         })
     },
 
@@ -250,6 +255,8 @@ export default {
 
         this.charts.push(chart)
       }
+
+      // console.log(this.charts)
     }
   }
 

@@ -32,9 +32,6 @@
               >
                 Добавить сотрудника
               </v-btn>
-              <v-btn class="ma-2">
-                Рейтинг сотрудников
-              </v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -68,9 +65,6 @@
               >
                 Добавить предмет
               </v-btn>
-              <v-btn class="ma-2">
-                Рейтинг предметов
-              </v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -103,9 +97,6 @@
                 @click="dialogAddGroup = true"
               >
                 Добавить группу
-              </v-btn>
-              <v-btn class="ma-2">
-                Рейтинг групп
               </v-btn>
             </v-card-actions>
           </v-card>
