@@ -26,7 +26,10 @@
                 </span>
               </p>
               <p>
-                Всего отзывов: {{teacherAnswers.length}}
+                Всего отзывов: {{reviewsAnswers.length}}
+              </p>
+              <p>
+                Всего ответов: {{teacherAnswers.length}}
               </p>
               <p>
                 Общая оценка: {{avergeRating}}

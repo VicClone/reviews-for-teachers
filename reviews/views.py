@@ -108,7 +108,7 @@ class StudentCreateView(APIView):
     if student.is_valid():
       student.save()
 
-    return Response(status=201)
+    return Response(student.data, status=201)
 
 class StudentDetailView(APIView):
   def get(self, request, pk):

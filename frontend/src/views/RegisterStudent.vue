@@ -103,8 +103,12 @@ export default {
           },
           body: JSON.stringify(this.form)
         })
-        .then(resolve => {
+        .then(response => {
           console.log('form send');
+          return response.json()
+        })
+        .then(data => {
+          this.$router.push({ name: 'ProfileStudent', params: { id: data.id }})
         })
         .catch(error => {
           console.error(error)
