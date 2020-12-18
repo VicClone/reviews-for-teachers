@@ -28,6 +28,7 @@
               outlined
               required
               v-model="formAuth.password"
+              type="password"
             >
             </v-text-field>
             <v-card-actions>
